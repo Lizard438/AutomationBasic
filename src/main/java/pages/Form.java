@@ -54,7 +54,7 @@ public class Form extends BasePage {
     @FindBy(css = ".btn-primary[type = \"submit\"]")
     WebElement signInBtn;
 
-    @FindBy(id = "validator-message")
+    @FindBy(css = ".success#validator-message,.fail#validator-message")
     WebElement validatorMessage;
 
     private static final String URL = "https://seleniumui.moderntester.pl/form.php";
@@ -168,8 +168,6 @@ public class Form extends BasePage {
     }
 
     public boolean isSuccess(){
-        new WebDriverWait(driver, Duration.ofSeconds(6))
-                .until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(validatorMessage, "")));
         return validatorMessage.getText().equalsIgnoreCase("Form send with success");
     }
 
