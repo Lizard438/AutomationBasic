@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
@@ -153,22 +154,22 @@ public class Form extends BasePage {
 
     public void uploadFile(String path){
         fileInput.sendKeys(path);
-        waitFileUpload();
+        waitFileUpload(path);
 
     }
 
-    private void waitFileUpload(){
-        new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.not(
-                        ExpectedConditions.textToBePresentInElement(fileInputLabel, "Choose file...")));
+    private void waitFileUpload(String path){
+
+        String name = new File(path).getName();
+//        new WebDriverWait(driver, Duration.ofSeconds(15))
+//                .until(ExpectedConditions.not(
+//                        ExpectedConditions.textToBePresentInElement(fileInputLabel, "Choose file...")));
+
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> fileInputLabel.getText().contains(name));
     }
 
     public void signIn(){
         signInBtn.click();
-    }
-
-    public boolean isSuccess(){
-        return validatorMessage.getText().equalsIgnoreCase("Form send with success");
     }
 
     public String getResult(){
