@@ -158,7 +158,9 @@ public class Form extends BasePage {
     }
 
     private void waitFileUpload(){
-        new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElementValue(fileInputLabel, "Choose file...")));
+        new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.not(
+                        ExpectedConditions.textToBePresentInElement(fileInputLabel, "Choose file...")));
     }
 
     public void signIn(){
@@ -166,6 +168,8 @@ public class Form extends BasePage {
     }
 
     public boolean isSuccess(){
+        new WebDriverWait(driver, Duration.ofSeconds(6))
+                .until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(validatorMessage, "")));
         return validatorMessage.getText().equalsIgnoreCase("Form send with success");
     }
 
