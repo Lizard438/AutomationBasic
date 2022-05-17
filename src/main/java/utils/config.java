@@ -1,4 +1,4 @@
-package base;
+package utils;
 
 import io.github.bonigarcia.wdm.config.DriverManagerType;
 
