@@ -3,10 +3,8 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.runtime.model.StackTraceId;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -120,7 +118,7 @@ public class Form extends BasePage {
     }
 
     public void selectRandomProfessions(){
-        int code = rnd.nextInt(1 << professionCheckboxes.size());   //positions code ex: 5(int) -> 101(bin) -> choose 0 and 2 checkboxes(because 0 and 2 digits = 1)
+        int code = rnd.nextInt((1 << professionCheckboxes.size())-1)+1;   //positions code ex: 5(int) -> 101(bin) -> choose 0 and 2d checkboxes(because 0 and 2 digits = 1)
         String pos = Integer.toBinaryString(code);
         for(int i = 0; i < pos.length(); i++){
             if(pos.charAt(i) == '1'){
@@ -159,12 +157,7 @@ public class Form extends BasePage {
     }
 
     private void waitFileUpload(String path){
-
         String name = new File(path).getName();
-//        new WebDriverWait(driver, Duration.ofSeconds(15))
-//                .until(ExpectedConditions.not(
-//                        ExpectedConditions.textToBePresentInElement(fileInputLabel, "Choose file...")));
-
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> fileInputLabel.getText().contains(name));
     }
 
