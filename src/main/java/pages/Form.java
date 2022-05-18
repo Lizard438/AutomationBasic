@@ -140,7 +140,7 @@ public class Form extends BasePage {
 
     public void selectRandomContinent(){
         Select continents = new Select(continent);
-        selectContinent(rnd.nextInt(continents.getOptions().size()));
+        selectContinent(rnd.nextInt(continents.getOptions().size()-1)+1);
     }
 
     public void selectSeleniumCommands(String[] values){
