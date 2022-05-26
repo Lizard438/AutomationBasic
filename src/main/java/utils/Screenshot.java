@@ -25,7 +25,7 @@ public class Screenshot {
         Date time = new Date(result.getEndMillis());
         String destName = getScreenshotDestName(directoryName,testName,time);
 
-        File targetFile = new File(System.getProperty("user.home")+SCREENSHOTS_DIR, destName);
+        File targetFile = new File(System.getProperty("user.dir")+SCREENSHOTS_DIR, destName);
         FileUtils.copyFile(screenshotFile, targetFile);
         try (FileInputStream fis = new FileInputStream(targetFile)) {
             Allure.addAttachment("Screenshot", fis);
