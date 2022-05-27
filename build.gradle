@@ -19,6 +19,7 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.1.4'
     implementation 'org.testng:testng:7.5'
     implementation 'io.github.bonigarcia:webdrivermanager:5.1.1'
+    implementation 'org.aeonbits.owner:owner:1.0.12'
     implementation 'io.qameta.allure:allure-testng:2.17.3'
     runtimeOnly 'org.aspectj:aspectjweaver:1.9.9.1'
 

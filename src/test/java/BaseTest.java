@@ -1,23 +1,22 @@
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import utils.ProjectConfig;
 
-import static base.WebDriverFactory.createDriver;
-import static utils.config.BROWSER;
-import static utils.config.CLEAR_COOKIES_AND_STORAGE;
+import static core.WebDriverFactory.createDriver;
 
 public class BaseTest {
 
     protected WebDriver driver;
+    protected ProjectConfig cfg = ConfigFactory.create(ProjectConfig.class, System.getProperties());
 
     @BeforeMethod
     public void setUp(ITestContext context){
-        driver = createDriver(BROWSER);
+        driver = createDriver(cfg.browser());
         driver.manage().window().maximize();
         context.setAttribute("WebDriver", driver);
     }
@@ -27,7 +26,7 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
         if(driver != null){
-            if(CLEAR_COOKIES_AND_STORAGE){
+            if(cfg.clearCookiesAndStorage()){
                 clearCookiesAndLocalStorage();
             }
             driver.quit();

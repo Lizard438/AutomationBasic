@@ -1,6 +1,6 @@
 package pages;
 
-import base.BasePage;
+import core.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -56,8 +56,6 @@ public class Form extends BasePage {
     @FindBy(css = ".success#validator-message,.fail#validator-message")
     WebElement validatorMessage;
 
-    private static final String URL = "https://seleniumui.moderntester.pl/form.php";
-
     private Random rnd = new Random();
 
     public Form(WebDriver driver){
@@ -66,7 +64,7 @@ public class Form extends BasePage {
     }
 
     public Form open(){
-        open(URL);
+        open(cfg.urlForm());
         return this;
     }
 
