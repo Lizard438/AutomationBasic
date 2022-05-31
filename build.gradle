@@ -31,7 +31,6 @@ tasks.withType(JavaCompile) {
 
 test {
     useTestNG(){
-        //listeners << 'utils.TestListener'
         suites 'src/test/resources/testng.xml'
     }
 }
