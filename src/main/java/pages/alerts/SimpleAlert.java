@@ -16,11 +16,6 @@ public class SimpleAlert extends BasePage {
         this.status = status;
     }
 
-    protected SimpleAlert(WebDriver driver, Alert alert){
-        super(driver);
-        this.alert = alert;
-    }
-
     public void accept(){
         alert.accept();
     }
