@@ -12,6 +12,9 @@ public interface ProjectConfig extends Config {
     @Key("url.alerts")
     String urlAlerts();
 
+    @Key("url.table")
+    String urlTable();
+
     String browser();
 
     @Key("clear.cookies.and.storage")
