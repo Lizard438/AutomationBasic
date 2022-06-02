@@ -1,2 +1,63 @@
-package PACKAGE_NAME;public class AlertsTest {
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import pages.alerts.AlertsPage;
+import pages.alerts.ConfirmBox;
+import pages.alerts.PromptBox;
+import pages.alerts.SimpleAlert;
+
+public class AlertsTest extends BaseTest{
+
+    AlertsPage alertsPage;
+
+    @BeforeMethod
+    public void init(){
+        alertsPage = new AlertsPage(driver);
+    }
+
+    @Test
+    public void simpleAlertTest(){
+        SimpleAlert alert = alertsPage
+                            .open()
+                            .clickSimpleAlert();
+        alert.accept();
+        Assert.assertEquals(alert.getStatus(), "OK button pressed");
+    }
+
+    @Test
+    public void acceptConfirmBoxTest(){
+        ConfirmBox alert = alertsPage
+                            .open()
+                            .clickConfirmBox();
+        alert.accept();
+        Assert.assertEquals(alert.getStatus(), "You pressed OK!");
+    }
+
+    @Test
+    public void dismissConfirmBoxTest(){
+        ConfirmBox alert = alertsPage
+                            .open()
+                            .clickConfirmBox();
+        alert.dismiss();
+        Assert.assertEquals(alert.getStatus(), "You pressed Cancel!");
+    }
+
+    @Test
+    public void promptBoxTest(){
+        PromptBox alert = alertsPage
+                            .open()
+                            .clickPromptBox();
+        alert.type("Liza")
+                        .accept();
+        Assert.assertEquals(alert.getStatus(), "Hello Liza! How are you today?");
+    }
+
+    @Test
+    public void delayedAlertTest(){
+        SimpleAlert alert = alertsPage
+                            .open()
+                            .clickDelayedAlert();
+        alert.accept();
+        Assert.assertEquals(alert.getStatus(), "OK button pressed");
+    }
 }
