@@ -7,7 +7,7 @@
     <test name="AutomationBasic">
 
         <classes>
-            <class name="FormTest" />
+            <class name="WindowsTest" />
         </classes>
     </test>
 </suite>

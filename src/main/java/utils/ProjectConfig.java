@@ -15,6 +15,9 @@ public interface ProjectConfig extends Config {
     @Key("url.table")
     String urlTable();
 
+    @Key("url.windows")
+    String urlWindows();
+
     String browser();
 
     @Key("clear.cookies.and.storage")
