@@ -37,12 +37,12 @@ public class WindowsTest extends BaseTest{
 
     @Test
     public void newBrowserTabTest(){
-        WindowPage.MessageWindow messageWindow = baseWindowPage
+        TablePage newTab = baseWindowPage
                 .open()
-                .clickNewMessageWindow();
-        Assert.assertTrue(messageWindow.getText().contains("Knowledge"));
+                .clickNewBrowserTab();
+        Assert.assertEquals(newTab.getHeaderText(), "Automation Pratice table");
 
-        messageWindow.close();
+        newTab.close();
         Assert.assertEquals(baseWindowPage.getContentLabel(), "1) Browser Windows");
     }
 

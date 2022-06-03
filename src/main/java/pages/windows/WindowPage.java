@@ -42,12 +42,10 @@ public class WindowPage extends BasePage {
 
     }
 
-//    public TablePage clickNewBrowserTab(){
-//        String newHandle = clickWindowOpeningButton(newBrowserTab);
-//        getPageObject(newHandle, TablePage.class);
-//        getPageObject(newHandle, Form.class);
-//
-//    }
+    public TablePage clickNewBrowserTab(){
+        String newHandle = clickWindowOpeningButton(newBrowserTab);
+        return (TablePage) getPageObject(newHandle,TablePage.class);
+    }
 
     public String clickWindowOpeningButton(By button){
         Set<String> handles = driver.getWindowHandles();
