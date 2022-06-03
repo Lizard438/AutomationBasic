@@ -2,13 +2,16 @@ package core;
 
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ProjectConfig;
 
 import java.time.Duration;
-import java.util.LinkedHashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class BasePage {
@@ -17,18 +20,52 @@ public class BasePage {
     protected ProjectConfig cfg;
     protected WebDriverWait wait;
     protected String url;
+    protected String handle;
+    protected String parentHandle;
 
-    public LinkedHashSet<String> handles;
 
     protected BasePage(WebDriver driver){
         this.driver = driver;
         cfg = ConfigFactory.create(ProjectConfig.class,System.getProperties());
         wait = new WebDriverWait(driver, Duration.ofSeconds(cfg.seconds()));
-        handles = new LinkedHashSet<>();
+    }
+
+    public String getHandle(){
+        return handle;
+    }
+
+    public void setHandle(String handle){
+        this.handle = handle;
     }
 
     protected void open(String url){
         driver.get(url);
+        String active = driver.getWindowHandle();
+        setHandle(active);
+
+    }
+
+    public void setParentHandle(String handle){
+        parentHandle = handle;
+    }
+
+    public void setHandles(String handle, String parentHandle){
+        this.handle = handle;
+        this.parentHandle = parentHandle;
+    }
+
+    public void makeActive(){
+        driver.switchTo().window(handle);
+    }
+
+    public boolean close(){
+        driver.switchTo().window(handle);
+        driver.close();
+        if(!parentHandle.isEmpty()){
+            driver.switchTo().window(parentHandle);
+            return true;
+        }
+        return false;
     }
 
     protected void setUrl(String url){
@@ -47,25 +84,17 @@ public class BasePage {
         return driver.getTitle();
     }
 
-    protected String getActiveHandle(){
-        Set<String> current = driver.getWindowHandles();
-        current.removeAll(handles);
-        return current.iterator().next();
-    }
-
-    protected void windowBackUp(){
-        String handle = driver.getWindowHandle();
-        handles.add(handle);
-    }
-
-    public void closeCurrentWindow(){
-        if (handles.isEmpty()){
-            return;
+    public String getNewWindowHandle(Set<String> oldHandles){
+        Set<String> remaining = driver.getWindowHandles();
+        remaining.removeAll(oldHandles);
+        if(!remaining.isEmpty()){
+            return (String) remaining.toArray()[0];
         }
-        String[] list = (String[]) handles.toArray();
-        String previous = list[list.length-1];
-        handles.remove(previous);
-        driver.close();
-        driver.switchTo().window(previous);
+        throw new NoSuchElementException("No new windows was opened.");
     }
+
+    public ExpectedCondition<Boolean> newWindowIsOpened(int before){
+        return ExpectedConditions.numberOfWindowsToBe(before+1);
+    }
+
 }

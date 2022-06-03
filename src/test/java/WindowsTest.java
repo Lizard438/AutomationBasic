@@ -14,14 +14,36 @@ public class WindowsTest extends BaseTest{
     }
 
     @Test
-    public void windowsTest(){
-        TablePage opened = baseWindowPage.open().clickNewBrowserWindow();
-        System.out.println(driver.getCurrentUrl());
-        Assert.assertEquals(opened.getHeaderText(), "Automation Pratice table");
-        System.out.println(driver.getWindowHandles());
-        System.out.println(opened.handles.size());
-        opened.closeCurrentWindow();
-        System.out.println(driver.getCurrentUrl());
-        Assert.assertEquals(driver.getCurrentUrl(), baseWindowPage.getUrl());
+    public void newBrowserWindowTest(){
+        TablePage newWindow = baseWindowPage
+                .open()
+                .clickNewBrowserWindow();
+        Assert.assertEquals(newWindow.getHeaderText(), "Automation Pratice table");
+
+        newWindow.close();
+        Assert.assertEquals(baseWindowPage.getContentLabel(), "1) Browser Windows");
     }
+
+    @Test
+    public void newMessageWindowTest(){
+        WindowPage.MessageWindow messageWindow = baseWindowPage
+                .open()
+                .clickNewMessageWindow();
+        Assert.assertTrue(messageWindow.getText().contains("Knowledge"));
+
+        messageWindow.close();
+        Assert.assertEquals(baseWindowPage.getContentLabel(), "1) Browser Windows");
+    }
+
+    @Test
+    public void newBrowserTabTest(){
+        WindowPage.MessageWindow messageWindow = baseWindowPage
+                .open()
+                .clickNewMessageWindow();
+        Assert.assertTrue(messageWindow.getText().contains("Knowledge"));
+
+        messageWindow.close();
+        Assert.assertEquals(baseWindowPage.getContentLabel(), "1) Browser Windows");
+    }
+
 }

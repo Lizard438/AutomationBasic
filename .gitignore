@@ -1,0 +1,10 @@
+/target/
+/src/test/java/DemoTest.java
+/.gradle/
+/build/
+/.idea/
+/.mvn/
+/gradle/
+/Screenshots/
+/.allure/
+/allure-results/
