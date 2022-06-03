@@ -18,6 +18,9 @@ public interface ProjectConfig extends Config {
     @Key("url.windows")
     String urlWindows();
 
+    @Key("url.dragAndDrop")
+    String urlDragAndDrop();
+
     String browser();
 
     @Key("clear.cookies.and.storage")
