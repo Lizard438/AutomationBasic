@@ -1,4 +1,4 @@
-package pages;
+package pages.actions;
 
 import core.BasePage;
 import org.openqa.selenium.By;
@@ -6,12 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import javax.swing.*;
-
 public class DragAndDropPage extends BasePage {
 
-    private By source = By.id("draggable");
-    private By target = By.id("droppable");
+    private final By source = By.id("draggable");
+    private final By target = By.id("droppable");
 
     public DragAndDropPage(WebDriver driver){
         super(driver);
