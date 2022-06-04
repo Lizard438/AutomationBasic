@@ -21,6 +21,9 @@ public interface ProjectConfig extends Config {
     @Key("url.dragAndDrop")
     String urlDragAndDrop();
 
+    @Key("url.select")
+    String urlSelect();
+
     String browser();
 
     @Key("clear.cookies.and.storage")

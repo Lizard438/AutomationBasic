@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ProjectConfig;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
@@ -76,8 +77,12 @@ public class BasePage {
         return url;
     }
 
-    public WebElement findElement(By element){
-        return wait.until(driver -> driver.findElement(element));
+    public WebElement findElement(By locator){
+        return wait.until(driver -> driver.findElement(locator));
+    }
+
+    public List<WebElement> findElements(By locator){
+        return wait.until(driver -> driver.findElements(locator));
     }
 
     public String getTitle(){

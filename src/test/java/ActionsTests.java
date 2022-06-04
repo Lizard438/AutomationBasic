@@ -1,6 +1,7 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.DragAndDropPage;
+import pages.actions.DragAndDropPage;
+import pages.actions.SelectPage;
 
 public class ActionsTests extends BaseTest{
 
@@ -10,4 +11,15 @@ public class ActionsTests extends BaseTest{
                 .open().dragAndDrop();
         Assert.assertEquals(task.getStatus(), "Dropped!");
     }
+
+    @Test
+    public void selectTest(){
+        int[] items = {1, 3, 4};
+        SelectPage task = new SelectPage(driver)
+                .open()
+                .select(items);
+        Assert.assertEquals(task.getResult(), items);
+    }
+
+
 }
