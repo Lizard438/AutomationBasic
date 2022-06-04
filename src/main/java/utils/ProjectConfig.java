@@ -24,6 +24,9 @@ public interface ProjectConfig extends Config {
     @Key("url.select")
     String urlSelect();
 
+    @Key("url.sorting")
+    String urlSorting();
+
     String browser();
 
     @Key("clear.cookies.and.storage")

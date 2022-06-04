@@ -2,6 +2,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.actions.DragAndDropPage;
 import pages.actions.SelectPage;
+import pages.actions.SortingPage;
+
+import java.util.Arrays;
 
 public class ActionsTests extends BaseTest{
 
@@ -21,5 +24,13 @@ public class ActionsTests extends BaseTest{
         Assert.assertEquals(task.getResult(), items);
     }
 
+    @Test
+    public void sortingTest(){
+        int[] order = {3,4,1,5,7,2,6};
+        SortingPage task = new SortingPage(driver)
+                .open()
+                .sort(order);
+        Assert.assertEquals(task.getResult(), order);
+    }
 
 }
