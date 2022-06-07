@@ -8,14 +8,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AlertsPage extends BasePage {
 
-    private By simple = By.id("simple-alert");
-    private By simpleStatus = By.id("simple-alert-label");
-    private By prompt = By.id("prompt-alert");
-    private By promptStatus = By.id("prompt-label");
-    private By confirm = By.id("confirm-alert");
-    private By confirmStatus = By.id("confirm-label");
-    private By delayed = By.id("delayed-alert");
-    private By delayedStatus = By.id("delayed-alert-label");
+    private final By simple = By.id("simple-alert");
+    private final By simpleStatus = By.id("simple-alert-label");
+    private final By prompt = By.id("prompt-alert");
+    private final By promptStatus = By.id("prompt-label");
+    private final By confirm = By.id("confirm-alert");
+    private final By confirmStatus = By.id("confirm-label");
+    private final By delayed = By.id("delayed-alert");
+    private final By delayedStatus = By.id("delayed-alert-label");
 
 
     public AlertsPage(WebDriver driver) {

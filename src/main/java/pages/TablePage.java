@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class TablePage extends BasePage {
-    private By headerText = By.cssSelector("header>h1");
+    private final By headerText = By.cssSelector("header>h1");
     public TablePage(WebDriver driver){
         super(driver);
     }

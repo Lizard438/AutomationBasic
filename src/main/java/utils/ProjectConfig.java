@@ -30,6 +30,9 @@ public interface ProjectConfig extends Config {
     @Key("url.slider")
     String urlSlider();
 
+    @Key("url.progressbar")
+    String urlProgressBar();
+
     String browser();
 
     @Key("clear.cookies.and.storage")

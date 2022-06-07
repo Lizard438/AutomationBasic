@@ -6,14 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 
 public class SortingPage extends BasePage {
 
-    private By itemsLocator = By.cssSelector("#sortable>li");
+    private final By itemsLocator = By.cssSelector("#sortable>li");
 
     public SortingPage(WebDriver driver){
         super(driver);

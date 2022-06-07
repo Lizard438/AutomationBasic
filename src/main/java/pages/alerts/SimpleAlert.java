@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class SimpleAlert extends BasePage {
-    private By status;
+    private final By status;
 
     protected Alert alert;
 

@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 
 public class SliderPage extends BasePage {
 
-    private By handler = By.id("custom-handle");
+    private final By handler = By.id("custom-handle");
 
     public SliderPage(WebDriver driver){
         super(driver);
