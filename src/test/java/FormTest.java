@@ -1,30 +1,50 @@
+import data.formuser.FormUser;
+import data.formuser.FormUserDataFactory;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.Form;
+import pages.FormPage;
+
+import java.io.IOException;
 
 
 public class FormTest extends BaseTest{
+    FormPage form;
+
+    @BeforeMethod
+    public void init(){
+        form = new FormPage(driver);
+    }
+
+    public void fillAndSubmit(FormUser user){
+        form.open()
+                .fillFirstName(user.getFirstName())
+                .fillLastName(user.getLastName())
+                .fillEmail(user.getEmail())
+                .fillGender(user.getGender())
+                .fillAge(user.getAge())
+                .fillExperience(user.getExperience())
+                .fillProfession(user.getProfession())
+                .fillContinent(user.getContinent())
+                .fillCommands(user.getCommands())
+                .uploadFile(user.getFilePath())
+                .submit();
+    }
 
     @Test
-    public void formPositive(){
-//        String mail = new TempMail(driver).open().getTempMail();
-//        openNewTab();
-        String mail = "ghvuvuy@gyvy.ughbi";
-        Form form = new Form(driver).open();
-        form.fillFirstName("Jules");
-        form.fillLastName("Doe");
-        form.fillEmail(mail);
-        form.selectRandomSex();
-        form.fillRandomAge(18, 40);
-        form.selectRandomExperience();
-        form.selectRandomProfessions();
-        form.selectRandomContinent();
-        form.selectSeleniumCommands(new String[]{"Switch Commands", "Wait Commands"});
-        form.uploadFile(cfg.randomFilePath());
-        form.signIn();
-        //Assert.assertTrue(form.isSuccess());
-        Assert.assertEquals(form.getResult(), "Form send with success");
-
+    public void formTest(){
+        try {
+            FormUser validUser = FormUserDataFactory.createValidUser();
+            fillAndSubmit(validUser);
+            Assert.assertEquals(form.getResult(), "Form send with success");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
+
+
 
 }

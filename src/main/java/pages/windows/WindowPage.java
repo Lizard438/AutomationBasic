@@ -4,8 +4,6 @@ import core.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.Form;
 import pages.TablePage;
 
 import java.lang.reflect.InvocationTargetException;
