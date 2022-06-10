@@ -1,5 +1,7 @@
 package data.formuser;
 
+import java.util.Arrays;
+
 public class FormUser {
     private final String firstName;
     private final String lastName;
@@ -25,6 +27,23 @@ public class FormUser {
         this.commands = commands;
         this.filePath = filePath;
         this.additional = additional;
+    }
+
+    @Override
+    public String toString() {
+        return "FormUser{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", gender=" + gender +
+                ", age=" + age +
+                ", experience=" + experience +
+                ", profession=" + Arrays.toString(profession) +
+                ", continent=" + continent +
+                ", commands=" + Arrays.toString(commands) +
+                ", filePath='" + filePath + '\'' +
+                ", additional='" + additional + '\'' +
+                '}';
     }
 
     public String getFirstName() {
