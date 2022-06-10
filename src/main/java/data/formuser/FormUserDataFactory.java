@@ -40,7 +40,7 @@ public class FormUserDataFactory {
 
     public static FormUser createUserWithoutFirstName() throws IOException {
         return new FormUserBuilder()
-                .firstName(null)
+                .firstName("")
                 .lastName(faker.name().lastName())
                 .email(faker.internet().emailAddress())
                 .gender(options.option(FormUser.Gender.class))
@@ -113,7 +113,7 @@ public class FormUserDataFactory {
                 .profession(AUTOMATION_TESTER)
                 .continent(options.option(FormUser.Continent.class))
                 .commands(WAIT_COMMANDS, NAVIGATION_COMMANDS)
-                .filePath(null)
+                .filePath("")
                 .additional(faker.lorem().paragraph())
                 .build();
     }
