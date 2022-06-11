@@ -2,6 +2,7 @@ package pages;
 
 import core.BasePage;
 import data.formuser.FormUser;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,26 +35,31 @@ public class FormPage extends BasePage {
         super(driver);
     }
 
+    @Step("Відкрити сторінку з формою")
     public FormPage open(){
         open(cfg.urlForm());
         return this;
     }
 
+    @Step("Ввести ім'я {firstName}")
     public FormPage fillFirstName(String firstName){
         findElement(this.firstName).sendKeys(firstName);
         return this;
     }
 
+    @Step("Ввести прізвище {lastName}")
     public FormPage fillLastName(String lastName){
         findElement(this.lastName).sendKeys(lastName);
         return this;
     }
 
+    @Step("Ввести email {email}")
     public FormPage fillEmail(String email){
         findElement(this.email).sendKeys(email);
         return this;
     }
 
+    @Step("Вибрати стать {gender}")
     public FormPage fillGender(FormUser.Gender gender){
         List<WebElement> checkboxes = findElements(this.gender);
         switch (gender){
@@ -64,16 +70,19 @@ public class FormPage extends BasePage {
         return this;
     }
 
+    @Step("Ввести вік {age}")
     public FormPage fillAge(int age){
         findElement(this.age).sendKeys(Integer.toString(age));
         return this;
     }
 
+    @Step("Вибрати {experience} років досвіду")
     public FormPage fillExperience(int experience){
         findElements(this.experience).get(experience-1).click();
         return this;
     }
 
+    @Step("Вибрати професії {professions}")
     public FormPage fillProfession(FormUser.Profession... professions){
         List<WebElement> checkboxes = findElements(this.profession);
         for(FormUser.Profession p : professions){
@@ -86,12 +95,14 @@ public class FormPage extends BasePage {
         return this;
     }
 
+    @Step("Вибрати континент {continent}")
     public FormPage fillContinent(FormUser.Continent continent){
         Select continents = new Select(findElement(this.continents));
         continents.selectByVisibleText(continent.getValue());
         return this;
     }
 
+    @Step("Вибрати команди {seleniumCommands}")
     public FormPage fillCommands(FormUser.SeleniumCommands... seleniumCommands){
         Select commands = new Select(findElement(this.seleniumCommands));
         for(FormUser.SeleniumCommands c : seleniumCommands){
@@ -100,6 +111,7 @@ public class FormPage extends BasePage {
         return this;
     }
 
+    @Step("Завантажити файл, розташування: {path}")
     public FormPage uploadFile(String path){
         if(!path.isEmpty()){
             findElement(fileInput).sendKeys(path);
@@ -107,11 +119,13 @@ public class FormPage extends BasePage {
         return this;
     }
 
+    @Step("Заповнити додаткову інформацію: {information}")
     public FormPage fillAdditionalInformation(String information){
         findElement(additional).sendKeys(information);
         return this;
     }
 
+    @Step("Відправити форму")
     public void submit(){
         findElement(signInBtn).click();
     }
