@@ -1,6 +1,7 @@
 package pages.widgets;
 
 import core.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,11 +16,13 @@ public class SliderPage extends BasePage {
         super(driver);
     }
 
+    @Step("Відкрити сторінку з віджетом Slider")
     public SliderPage open(){
         open(cfg.urlSlider());
         return this;
     }
 
+    @Step("Перетягнути слайдер у позицію {percent} відсотків")
     public void move(int percent){
         WebElement handler = findElement(this.handler);
         int parentWidth = handler.findElement(By.xpath("./..")).getRect().getWidth();
@@ -29,6 +32,7 @@ public class SliderPage extends BasePage {
         new Actions(driver).dragAndDropBy(handler, offset, 0).perform();
     }
 
+    @Step("Перевірити значення позиції, відображене на надписі")
     public int getValue(){
         return Integer.parseInt(findElement(handler).getText());
     }

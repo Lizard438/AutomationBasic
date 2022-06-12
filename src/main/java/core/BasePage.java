@@ -1,5 +1,6 @@
 package core;
 
+import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchWindowException;
@@ -39,6 +40,7 @@ public class BasePage {
         this.handle = handle;
     }
 
+    @Step("Перейти за посиланням {url}")
     protected void open(String url){
         driver.get(url);
         String active = driver.getWindowHandle();
@@ -59,6 +61,7 @@ public class BasePage {
         driver.switchTo().window(handle);
     }
 
+    @Step("Зачинити поточне вікно/вкладку")
     public boolean close(){
         driver.switchTo().window(handle);
         driver.close();
@@ -77,10 +80,12 @@ public class BasePage {
         return url;
     }
 
+    @Step("Дочекатися появи елементу за локатором {locator}")
     public WebElement findElement(By locator){
         return wait.until(driver -> driver.findElement(locator));
     }
 
+    @Step("Дочекатися появи елементів за локатором {locator}")
     public List<WebElement> findElements(By locator){
         return wait.until(driver -> driver.findElements(locator));
     }
@@ -98,6 +103,7 @@ public class BasePage {
         throw new NoSuchElementException("No new windows was opened.");
     }
 
+    @Step("Перевірити, чи відкрилося нове вікно/вкладка")
     public ExpectedCondition<Boolean> newWindowIsOpened(int before){
         return ExpectedConditions.numberOfWindowsToBe(before+1);
     }

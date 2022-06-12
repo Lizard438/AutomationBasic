@@ -1,18 +1,14 @@
 import data.formuser.FormUser;
 import data.formuser.FormUserDataFactory;
 import io.qameta.allure.Description;
-import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.FormPage;
-import utils.TestListener;
 
 import java.io.IOException;
 
-@Listeners({TestListener.class})
 public class FormTest extends BaseTest{
     FormPage form;
 
@@ -68,7 +64,7 @@ public class FormTest extends BaseTest{
         Assert.assertTrue(form.professionIsMarkedInvalid());
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     @Description("Усі поля, окрім віку заповнені валідними даними, у поле вік введене значення менше 18. " +
             "Метод є прикладом падаючого тесту, оскільки обмеження на вік є штучним")
     public void ageBelowConstraintsFormTest() throws IOException {

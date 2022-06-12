@@ -2,6 +2,7 @@ package pages.actions;
 
 
 import core.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -20,11 +21,13 @@ public class SelectPage extends BasePage {
         super(driver);
     }
 
+    @Step("Відкрити сторінку з елементом Select")
     public SelectPage open(){
         open(cfg.urlSelect());
         return this;
     }
 
+    @Step("Обрати елементи {items} затиснувши клавішу CTRL")
     public SelectPage select(int... items){
         Actions commands = new Actions(driver);
         List<WebElement> list = findElements(itemsLocator);
@@ -36,6 +39,7 @@ public class SelectPage extends BasePage {
         return this;
     }
 
+    @Step("Перевірити повідомлення зі списком обраних елементів")
     public int[] getResult(){
         return Arrays.stream(findElement(result)
                 .getText().split("#")).filter(s->!(s.isEmpty()))

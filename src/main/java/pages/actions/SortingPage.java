@@ -1,6 +1,7 @@
 package pages.actions;
 
 import core.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,11 +18,13 @@ public class SortingPage extends BasePage {
         super(driver);
     }
 
+    @Step("Відкрити сторінку з інтерактивним списком")
     public SortingPage open(){
         open(cfg.urlSorting());
         return this;
     }
 
+    @Step("Виконати пересування елементів списку у наступній послідовності: {order}")
     public SortingPage sort(int[] order){
         LinkedList<WebElement> items = new LinkedList<>(findElements(itemsLocator));
         int[] positions = items.stream().mapToInt(i->i.getLocation().getY()).toArray();
@@ -44,6 +47,7 @@ public class SortingPage extends BasePage {
         return this;
     }
 
+    @Step("Перевірити результуючий порядок елеметів")
     public int[] getResult(){
         return findElements(itemsLocator).stream().mapToInt(e ->
             Integer.parseInt(e.getText().replace("Item ", ""))

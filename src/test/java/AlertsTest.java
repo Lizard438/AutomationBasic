@@ -1,3 +1,4 @@
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,6 +17,7 @@ public class AlertsTest extends BaseTest{
     }
 
     @Test
+    @Description("Підтвердження простого алерту")
     public void simpleAlertTest(){
         SimpleAlert alert = alertsPage
                             .open()
@@ -25,6 +27,7 @@ public class AlertsTest extends BaseTest{
     }
 
     @Test
+    @Description("Підтвердження ConfirmBox")
     public void acceptConfirmBoxTest(){
         ConfirmBox alert = alertsPage
                             .open()
@@ -34,6 +37,7 @@ public class AlertsTest extends BaseTest{
     }
 
     @Test
+    @Description("Скасування ConfirmBox")
     public void dismissConfirmBoxTest(){
         ConfirmBox alert = alertsPage
                             .open()
@@ -43,6 +47,7 @@ public class AlertsTest extends BaseTest{
     }
 
     @Test
+    @Description("Ведення тексту у PromptBox")
     public void promptBoxTest(){
         PromptBox alert = alertsPage
                             .open()
@@ -53,6 +58,7 @@ public class AlertsTest extends BaseTest{
     }
 
     @Test
+    @Description("Підтвердження алерту, що з'являється з затримкою")
     public void delayedAlertTest(){
         SimpleAlert alert = alertsPage
                             .open()

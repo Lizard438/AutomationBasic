@@ -1,3 +1,4 @@
+import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -37,6 +38,7 @@ public class BaseTest {
         driver.switchTo().newWindow(WindowType.TAB);
     }
 
+    @Step("Очищення файлів Cookie та локальної пам'яті")
     public void clearCookiesAndLocalStorage(){
         driver.manage().deleteAllCookies();
         JavascriptExecutor js = (JavascriptExecutor) driver;

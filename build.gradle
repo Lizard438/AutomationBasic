@@ -32,6 +32,6 @@ tasks.withType(JavaCompile) {
 
 test {
     useTestNG(){
-        suites 'src/test/resources/testng.xml'
+        suites 'src/test/resources/testngForm.xml'
     }
 }

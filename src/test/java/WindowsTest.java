@@ -1,3 +1,4 @@
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,6 +15,8 @@ public class WindowsTest extends BaseTest{
     }
 
     @Test
+    @Description("Натискання на кнопку, що відкриває нове вікно браузеру," +
+            "перевірка відкриття нового вікна, закриття вікна, перевірка повернення на базову сторінку")
     public void newBrowserWindowTest(){
         TablePage newWindow = baseWindowPage
                 .open()
@@ -25,6 +28,8 @@ public class WindowsTest extends BaseTest{
     }
 
     @Test
+    @Description("Натискання на кнопку, що відкриває нове вікно з повідомленням," +
+            "перевірка змісту повідомлення, закриття вікна, перевірка повернення на базову сторінку")
     public void newMessageWindowTest(){
         WindowPage.MessageWindow messageWindow = baseWindowPage
                 .open()
@@ -36,6 +41,8 @@ public class WindowsTest extends BaseTest{
     }
 
     @Test
+    @Description("Натискання на кнопку, що відкриває нову вкладку браузеру," +
+            "перевірка відкриття нової вкладки, закриття вкладки, перевірка повернення на базову сторінку")
     public void newBrowserTabTest(){
         TablePage newTab = baseWindowPage
                 .open()

@@ -6,11 +6,6 @@
     </listeners>
     <test name="AutomationBasic">
         <classes>
-            <class name="ActionsTests"/>
-            <class name="AlertsTest"/>
-            <class name="ProgressbarTest"/>
-            <class name="SliderTest"/>
-            <class name="WindowsTest"/>
             <class name="FormTest"/>
         </classes>
     </test>
