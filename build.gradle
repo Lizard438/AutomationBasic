@@ -32,6 +32,27 @@ tasks.withType(JavaCompile) {
 
 test {
     useTestNG(){
-        suites 'src/test/resources/testngForm.xml'
+        suites 'src/test/resources/testng.xml'
     }
 }
+
+task initCategories(type: Copy) {
+    from 'src/test/resources/categories.json'
+    into layout.buildDirectory.dir('allure-results')
+}
+
+task cleanAllureReport(type: Delete) {
+    delete allureReport.property("reportDir")
+}
+
+task updateHistoryAndLaunchAllure(type: Sync) {
+    group = 'Verification'
+    description = 'Generates Allure report and copies report history for Allure Serve Trends'
+    dependsOn cleanAllureReport
+    dependsOn allureReport
+    finalizedBy allureServe
+
+    from file(allureReport.property("reportDir").file('history'))
+    into layout.buildDirectory.dir('allure-results/history')
+}
+
