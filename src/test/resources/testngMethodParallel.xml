@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Test Suite" parallel="methods" thread-count="4" verbose="2">
+    <listeners>
+        <listener class-name="utils.TestListener"/>
+        <listener class-name="utils.ExecutionTimeListener"/>
+    </listeners>
+    <test name="AutomationBasic">
+        <classes>
+            <class name="ActionsTests"/>
+            <class name="AlertsTest"/>
+            <class name="ProgressbarTest"/>
+            <class name="SliderTest"/>
+            <class name="WindowsTest"/>
+            <class name="FormTest"/>
+        </classes>
+    </test>
+</suite>

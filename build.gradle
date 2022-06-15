@@ -32,7 +32,7 @@ tasks.withType(JavaCompile) {
 
 test {
     useTestNG(){
-        suites 'src/test/resources/testng.xml'
+        suites 'src/test/resources/testngParallel.xml'
     }
 }
 
@@ -43,6 +43,10 @@ task initCategories(type: Copy) {
 
 task cleanAllureReport(type: Delete) {
     delete allureReport.property("reportDir")
+}
+
+tasks.named('allureReport'){
+    mustRunAfter cleanAllureReport
 }
 
 task updateHistoryAndLaunchAllure(type: Sync) {
