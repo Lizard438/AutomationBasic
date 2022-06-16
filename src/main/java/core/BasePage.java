@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-public class BasePage {
+public abstract class BasePage {
 
     protected WebDriver driver;
     protected ProjectConfig cfg;

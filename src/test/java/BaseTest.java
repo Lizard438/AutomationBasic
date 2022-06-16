@@ -10,7 +10,7 @@ import utils.ProjectConfig;
 
 import static core.WebDriverFactory.createDriver;
 
-public class BaseTest {
+public abstract class BaseTest {
 
     protected WebDriver driver;
     protected ProjectConfig cfg = ConfigFactory.create(ProjectConfig.class, System.getProperties());
