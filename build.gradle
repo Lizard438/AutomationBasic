@@ -32,7 +32,7 @@ tasks.withType(JavaCompile) {
 
 test {
     useTestNG(){
-        suites 'src/test/resources/testngParallel.xml'
+        suites 'src/test/resources/testng.xml'
     }
 }
 

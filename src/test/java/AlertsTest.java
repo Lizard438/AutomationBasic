@@ -9,7 +9,7 @@ import pages.alerts.SimpleAlert;
 
 public class AlertsTest extends BaseTest{
 
-    AlertsPage alertsPage;
+    private AlertsPage alertsPage;
 
     @BeforeMethod
     public void init(){

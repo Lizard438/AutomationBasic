@@ -3,7 +3,6 @@ package core;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -45,7 +44,6 @@ public abstract class BasePage {
         driver.get(url);
         String active = driver.getWindowHandle();
         setHandle(active);
-
     }
 
     public void setParentHandle(String handle){
@@ -100,7 +98,7 @@ public abstract class BasePage {
         if(!remaining.isEmpty()){
             return (String) remaining.toArray()[0];
         }
-        throw new NoSuchElementException("No new windows was opened.");
+        throw new NoSuchElementException("No new window was opened.");
     }
 
     @Step("Перевірити, чи відкрилося нове вікно/вкладка")

@@ -10,7 +10,7 @@ import pages.FormPage;
 import java.io.IOException;
 
 public class FormTest extends BaseTest{
-    FormPage form;
+    private FormPage form;
 
     @BeforeMethod
     public void init(){
