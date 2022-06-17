@@ -3,11 +3,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.TablePage;
-import pages.alerts.AlertsPage;
 import pages.windows.WindowPage;
 
 public class WindowsTest extends BaseTest{
-    WindowPage baseWindowPage;
+    private WindowPage baseWindowPage;
 
     @BeforeMethod
     public void init(){
@@ -17,7 +16,7 @@ public class WindowsTest extends BaseTest{
     @Test
     @Description("Натискання на кнопку, що відкриває нове вікно браузеру," +
             "перевірка відкриття нового вікна, закриття вікна, перевірка повернення на базову сторінку")
-    public void newBrowserWindowTest(){
+    public void newBrowserWindowTest() throws InstantiationException {
         TablePage newWindow = baseWindowPage
                 .open()
                 .clickNewBrowserWindow();
@@ -43,7 +42,7 @@ public class WindowsTest extends BaseTest{
     @Test
     @Description("Натискання на кнопку, що відкриває нову вкладку браузеру," +
             "перевірка відкриття нової вкладки, закриття вкладки, перевірка повернення на базову сторінку")
-    public void newBrowserTabTest(){
+    public void newBrowserTabTest() throws InstantiationException {
         TablePage newTab = baseWindowPage
                 .open()
                 .clickNewBrowserTab();

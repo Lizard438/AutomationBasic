@@ -31,7 +31,7 @@ public class WindowPage extends BasePage {
     }
 
     @Step("Натиснути на кнопку, що відкриває нове вікно браузеру")
-    public TablePage clickNewBrowserWindow(){
+    public TablePage clickNewBrowserWindow() throws InstantiationException {
         String newHandle = clickWindowOpeningButton(newBrowserWindow);
         return (TablePage) getPageObject(newHandle,TablePage.class);
     }
@@ -45,13 +45,13 @@ public class WindowPage extends BasePage {
     }
 
     @Step("Натиснути на кнопку, що відкриває нову вкладку браузеру")
-    public TablePage clickNewBrowserTab(){
+    public TablePage clickNewBrowserTab() throws InstantiationException {
         String newHandle = clickWindowOpeningButton(newBrowserTab);
         return (TablePage) getPageObject(newHandle,TablePage.class);
     }
 
     @Step("Натиснути на кнопку із селектором {button} і дочекатися відкриття віконця")
-    public String clickWindowOpeningButton(By button){
+    private String clickWindowOpeningButton(By button){
         Set<String> handles = driver.getWindowHandles();
         findElement(button).click();
         wait.until(newWindowIsOpened(handles.size()));
@@ -59,13 +59,13 @@ public class WindowPage extends BasePage {
     }
 
     @Step("Вказівка веб-драйверу вважати відкрите вікно активним і генерація об'єкту сторінки, що є інтерфейсом відкритого вікна")
-    private BasePage getPageObject(String handle, Class<? extends BasePage> pageClass) {
+    private BasePage getPageObject(String handle, Class<? extends BasePage> pageClass) throws InstantiationException {
         BasePage page = null;
         try {
             page = pageClass.getConstructor(WebDriver.class).newInstance(driver);
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-            page = new TablePage(driver);
+            throw new InstantiationException("Page object Instantiation error, please check page class constructor." +
+                    " Original exception message: "+e.getMessage());
         }
         page.setHandles(handle, getHandle());
         page.makeActive();
