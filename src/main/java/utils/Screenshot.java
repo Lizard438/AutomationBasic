@@ -8,6 +8,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.util.Date;
 
 
 public class Screenshot {
-    public static void captureScreenshot(ITestResult result) throws IOException {
+    public static void captureScreenshotToFile(ITestResult result) throws IOException {
         WebDriver driver = (WebDriver)result.getTestContext().getAttribute("WebDriver");
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
@@ -38,5 +39,12 @@ public class Screenshot {
         String timePart = formatter.format(time);
         String systemSeparator = System.getProperty("file.separator");
         return directoryName+systemSeparator+testName+timePart+".png";
+    }
+
+    public static void attachScreenshotToAllure(ITestResult result){
+        WebDriver driver = (WebDriver)result.getTestContext().getAttribute("WebDriver");
+        Allure.addAttachment(result.getName(),
+                new ByteArrayInputStream(((TakesScreenshot) driver)
+                        .getScreenshotAs(OutputType.BYTES)));
     }
 }
