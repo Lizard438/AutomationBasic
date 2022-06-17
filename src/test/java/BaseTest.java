@@ -2,7 +2,6 @@ import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WindowType;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -22,8 +21,6 @@ public abstract class BaseTest {
         context.setAttribute("WebDriver", driver);
     }
 
-
-
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
         if(driver != null){
@@ -34,16 +31,11 @@ public abstract class BaseTest {
         }
     }
 
-    public void openNewTab(){
-        driver.switchTo().newWindow(WindowType.TAB);
-    }
-
     @Step("Очищення файлів Cookie та локальної пам'яті")
     public void clearCookiesAndLocalStorage(){
         driver.manage().deleteAllCookies();
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.sessionStorage.clear()");
+        js.executeScript("window.localStorage.clear()");
     }
-
 
 }
